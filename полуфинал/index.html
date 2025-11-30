@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AZ Travels - Горные регионы столицы</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
+</head>
+<body class="intro-running">
+
+    <!-- ЭКРАН ВСТУПЛЕНИЯ (ИНТРО) -->
+    <div id="introOverlay" class="intro-overlay">
+        <div class="intro-content">
+            <div id="introTitle" class="intro-title"></div>
+            <div id="introTagline" class="intro-tagline"></div>
+        </div>
+    </div>
+
+    <header>
+    <div class="header-left">
+        <button class="burger-button" onclick="toggleBurgerMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <a href="#" class="logo"><span>AZ</span> Travel</a>
+        
+    </div>
+    
+   <div class="header-right">
+    <nav class="top-nav">
+        <button class="header-link" onclick="openAboutModal()">О нас</button>
+        <button class="header-link" onclick="openFaqModal()">Вопросы и ответы</button>
+        <button class="header-link" onclick="openSocialModal()">Социальные сети</button>
+    </nav>
+
+    <button id="globalFavoriteFilter"
+            class="header-link header-link-fav"
+            onclick="toggleGlobalFavoritesFilter(this)">
+        ❤️ Избранное (0)
+    </button>
+
+    <button id="cartButton"
+            class="header-link"
+            onclick="openCartModal()">
+        🛒 Корзина (0)
+    </button>
+
+    <div id="authContainer">
+        <button class="header-link header-link-auth" onclick="openAuth('login')">
+            Вход / Регистрация
+        </button>
+    </div>
+
+    <!-- Кнопка личного кабинета -->
+    <button class="header-profile-btn" onclick="openProfileModal()" title="Личный кабинет">
+        <svg viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+            <path fill="currentColor"
+                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 
+                     1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-6 1.34-6 
+                     3v1h12v-1c0-1.66-2.67-3-6-3z"/>
+        </svg>
+    </button>
+
+    <!-- КНОПКА ТЁМНОЙ ТЕМЫ (СПРАВА ОТ ЛИЧНОГО КАБИНЕТА) -->
+    <button id="darkModeToggle"
+            class="header-dark-toggle"
+            onclick="toggleDarkMode()"
+            title="Тёмная тема">
+        🌙
+    </button>
+</div>
+</header>
+
+
+
+<div id="burgerMenu" class="burger-menu">
+    <nav class="burger-menu-nav">
+
+        <!-- ГОРЫ -->
+        <div class="burger-group" data-section="mountains">
+            <button class="burger-group-header" type="button" onclick="toggleBurgerSection('mountains')">
+                <span>Горы</span>
+                <span class="burger-arrow">▾</span>
+            </button>
+            <div class="burger-submenu">
+                <a href="#caucasus-grid" onclick="scrollToSection(event, 'caucasus-grid')">Талышские горы</a>
+                <a href="#big-caucasus-grid" onclick="scrollToSection(event, 'big-caucasus-grid')">Большой Кавказ</a>
+                <a href="#small-caucasus-grid" onclick="scrollToSection(event, 'small-caucasus-grid')">Малый Кавказ</a>
+            </div>
+        </div>
+
+        <!-- ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
+        <div class="burger-group" data-section="sights">
+            <button class="burger-group-header" type="button" onclick="toggleBurgerSection('sights')">
+                <span>Достопримечательности</span>
+                <span class="burger-arrow">▾</span>
+            </button>
+            <div class="burger-submenu">
+                <a href="#heritage-grid" onclick="scrollToSection(event, 'heritage-grid')">Историческое наследие</a>
+                <a href="#parks-grid" onclick="scrollToSection(event, 'parks-grid')">Национальные парки</a>
+                <a href="#museums-grid" onclick="scrollToSection(event, 'museums-grid')">Музеи и выставки</a>
+            </div>
+        </div>
+
+    </nav>
+</div>
+
+    <section class="hero">
+    <div>
+        <h1>Горные регионы Азербайджана</h1>
+        <p>сайт, который поможет жителям Азербайджана и туристам легко находить горные маршруты, планировать походы, получать информацию о безопасности и вдохновляться природой страны.</p>
+        <p>Достопримечательности</p>
+    </div>
+</section>
+
+<video id="bgVideo" class="bg-video" autoplay muted loop playsinline>
+    <source src="media/bg-mountains.mp4" type="video/mp4">
+    Ваш браузер не поддерживает видеофон.
+</video>
+
+<div class="container">
+
+    <!--  большой Кавказ -->
+<div class="section-header" style="margin-top: 60px;">
+    <h2 class="region-title" onclick="openRegionInfo('bigCaucasus')">Большой Кавказ</h2>
+    <div class="line"></div>
+</div>
+
+<div class="grid" id="big-caucasus-grid">
+
+    <!-- семь красавиц -->
+    <div class="card food-card" data-category="big-caucasus" data-id="111">
+        <div class="card-img-wrap" onclick="showEventDetails(111)">
+            <img src="https://fly2baku.com/wp-content/uploads/2016/06/DSC_2356-1024x681.jpg"
+                 alt="Водопад Семь красавиц возле Габалы">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 111)">
+                    <span id="heart-111">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(111)">Семь красавиц</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(111)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!--  Водопад Рам-рама -->
+    <div class="card food-card" data-category="big-caucasus" data-id="112">
+        <div class="card-img-wrap" onclick="showEventDetails(112)">
+            <img src="https://anews.az/file/articles/2014-10-15/4567.jpg"
+                 alt="Водопад Рам-рама возле села Илису">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 112)">
+                    <span id="heart-112">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(112)">Водопад Рам-рама (Илису)</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(112)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 113. водопад ХалХал -->
+    <div class="card food-card" data-category="big-caucasus" data-id="113">
+        <div class="card-img-wrap" onclick="showEventDetails(113)">
+            <img src="https://news.day.az/media/2019/09/09/trend_oguz_xal_xal_shelale_170819_05.jpg"
+                 alt="Водопад Хал-Хал в горном ущелье">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 113)">
+                    <span id="heart-113">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(113)">Водопад Хал-Хал</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(113)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 114. водопад Лаза -->
+    <div class="card food-card" data-category="big-caucasus" data-id="114">
+        <div class="card-img-wrap" onclick="showEventDetails(114)">
+            <img src="https://www.orexca.com/img/azerbaijan/tours/laza-waterfall-tour/laza-waterfall-mountains-northern.jpg"
+                 alt="Водопад Лаза в Гусарском районе">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 114)">
+                    <span id="heart-114">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(114)">Водопад Лаза</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(114)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 115. шахдаг -->
+    <div class="card food-card" data-category="big-caucasus" data-id="115">
+        <div class="card-img-wrap" onclick="showEventDetails(115)">
+            <img src="https://testour.az/uploads/laza%20village.webp"
+                 alt="Горнолыжный курорт Шахдаг">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 115)">
+                    <span id="heart-115">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(115)">Шахдаг</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(115)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 116. туфандаг -->
+    <div class="card food-card" data-category="big-caucasus" data-id="116">
+        <div class="card-img-wrap" onclick="showEventDetails(116)">
+            <img src="https://static.tildacdn.com/tild3134-3763-4432-b332-393238626364/6-33.jpg"
+                 alt="Горный курорт Туфандаг в Габале">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 116)">
+                    <span id="heart-116">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(116)">Туфандаг</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(116)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 117. озеро Нохур Гёль -->
+    <div class="card food-card" data-category="big-caucasus" data-id="117">
+        <div class="card-img-wrap" onclick="showEventDetails(117)">
+            <img src="https://ru.trend.az/media/2019/07/03/trend_qebele_nohur_gol_030719_01.jpg"
+                 alt="Озеро Нохур Гёль возле Габалы">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 117)">
+                    <span id="heart-117">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(117)">Озеро Нохур Гёль</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(117)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--  Малый Кавказ -->
+<div class="section-header" style="margin-top: 60px;">
+    <h2 class="region-title" onclick="openRegionInfo('smallCaucasus')">Малый Кавказ</h2>
+    <div class="line"></div>
+</div>
+
+<div class="grid" id="small-caucasus-grid">
+
+    <!-- 118. Истису (Кельбаджар) -->
+    <div class="card food-card" data-category="small-caucasus" data-id="118">
+        <div class="card-img-wrap" onclick="showEventDetails(118)">
+            <img src="https://armeniancrimes.com/wp-content/uploads/2021/01/istisu.jpg"
+                 alt="Истису, термальные источники Кельбаджара">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 118)">
+                    <span id="heart-118">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(118)">Истису (Кельбаджар)</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(118)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 119. Нафталан -->
+    <div class="card food-card" data-category="small-caucasus" data-id="119">
+        <div class="card-img-wrap" onclick="showEventDetails(119)">
+            <img src="https://naftalan.city/uploads/posts/2024-09/1727707443_sanatoriy-karabah-naftalan.jpg"
+                 alt="Нафталан, лечебные нефтьевые ванны">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 119)">
+                    <span id="heart-119">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(119)">Нафталан</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(119)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 120. Туршсу -->
+    <div class="card food-card" data-category="small-caucasus" data-id="120">
+        <div class="card-img-wrap" onclick="showEventDetails(120)">
+            <img src="https://azerbaijan.az/uploads/news/65869a989b0ce.jpg"
+                 alt="Туршсу, горная долина и река возле Шуши">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 120)">
+                    <span id="heart-120">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(120)">Туршсу</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(120)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 121. Дарыдаг -->
+    <div class="card food-card" data-category="small-caucasus" data-id="121">
+        <div class="card-img-wrap" onclick="showEventDetails(121)">
+            <img src="https://azerbaijan.travel/resize3000/center/pages/7370/59dc833a-8b59-4fa2-8e22-5e7f7a9d602e.jpg"
+                 alt="Дарыдаг, радоновые источники Нахчывана">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 121)">
+                    <span id="heart-121">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(121)">Дарыдаг</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(121)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 122. Бадамлы -->
+    <div class="card food-card" data-category="small-caucasus" data-id="122">
+        <div class="card-img-wrap" onclick="showEventDetails(122)">
+            <img src="https://photos.wikimapia.org/p/00/04/57/27/71_big.jpg"
+                 alt="Бадамлы, курорт и минеральная вода в Нахчыване">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 122)">
+                    <span id="heart-122">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(122)">Бадамлы</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(122)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 123. Озеро Гёльгёль -->
+    <div class="card food-card" data-category="small-caucasus" data-id="123">
+        <div class="card-img-wrap" onclick="showEventDetails(123)">
+            <img src="https://azerbaijan.travel/resize3000/center/pages/398/64061df9-3106-4863-accb-e0c548258f23.jpg"
+                 alt="Озеро Гёльгёль в горах Малого Кавказа">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 123)">
+                    <span id="heart-123">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(123)">Озеро Гёйгёль</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(123)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="section-header" style="margin-top: 60px;">
+        <h2 class="region-title" onclick="openRegionInfo('talysh')">Талышские горы</h2>
+        <div class="line"></div>
+    </div>
+
+    <div class="grid" id="caucasus-grid">
+        <!-- 101. Ханбулан -->
+        <div class="card food-card" data-category="caucasus" data-id="101">
+            <div class="card-img-wrap" onclick="showEventDetails(101)">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Khanbulan.jpg"
+                     alt="Ханбулан, горное водохранилище и леса">
+            </div>
+            <div class="card-body">
+                <div class="card-actions" style="justify-content: flex-end;">
+                    <span class="favorite-toggle" onclick="toggleFavorite(event, 101)">
+                        <span id="heart-101">♡</span>
+                    </span>
+                </div>
+                <div class="card-title" onclick="showEventDetails(101)">Ханбулан</div>
+                <div class="card-footer">
+                    <button class="btn-outline" onclick="showEventDetails(101)">Подробнее</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 102. Лерик -->
+        <div class="card food-card" data-category="caucasus" data-id="102">
+            <div class="card-img-wrap" onclick="showEventDetails(102)">
+                <img src="https://azerbaijan.travel/resize3000/center/pages/409/4d70f575-ef54-41eb-aada-d078cc9984b8.jpg"
+                     alt="Лерик, талышские горы и облачные луга">
+            </div>
+            <div class="card-body">
+                <div class="card-actions" style="justify-content: flex-end;">
+                    <span class="favorite-toggle" onclick="toggleFavorite(event, 102)">
+                        <span id="heart-102">♡</span>
+                    </span>
+                </div>
+                <div class="card-title" onclick="showEventDetails(102)">Лерик</div>
+                <div class="card-footer">
+                    <button class="btn-outline" onclick="showEventDetails(102)">Подробнее</button>
+                </div>
+            </div>
+        </div>
+
+            <!-- 124. Водопад Галабин -->
+    <div class="card food-card" data-category="small-caucasus" data-id="124">
+        <div class="card-img-wrap" onclick="showEventDetails(124)">
+            <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjKWGHG5LCwYCyS9Xr_kiseL1CD7CvWVtwa5AP1MfihOM1j2PnsPqYns_0GF2Vxn6uij62wR0yRb8bDJ2FHHLhZcDvR79h8dHeLiB4x6mzJFt_xB7Z6rSVCthb_tZapf6bGZQCyksOjZbY/s1600/DSC04143-01-01.jpeg"
+                 alt="Водопад Галабин в горах Малого Кавказа">
+        </div>
+        <div class="card-body">
+            <div class="card-actions" style="justify-content: flex-end;">
+                <span class="favorite-toggle" onclick="toggleFavorite(event, 124)">
+                    <span id="heart-124">♡</span>
+                </span>
+            </div>
+            <div class="card-title" onclick="showEventDetails(124)">Водопад Галабин</div>
+            <div class="card-footer">
+                <button class="btn-outline" onclick="showEventDetails(124)">Подробнее</button>
+            </div>
+        </div>
+    </div>
+
+        <!-- 104. Водопад Сим -->
+<div class="card food-card" data-category="caucasus" data-id="104">
+    <div class="card-img-wrap" onclick="showEventDetails(104)">
+        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/9d/e7/fe/caption.jpg?w=1200&h=1200&s=1"
+             alt="Водопад Сим в Талышских горах">
+        <!-- при желании замени src на свою фотографию водопада Сим -->
+    </div>
+    <div class="card-body">
+        <div class="card-actions" style="justify-content: flex-end;">
+            <span class="favorite-toggle" onclick="toggleFavorite(event, 104)">
+                <span id="heart-104">♡</span>
+            </span>
+        </div>
+        <div class="card-title" onclick="showEventDetails(104)">Водопад Сим</div>
+        <div class="card-footer">
+            <button class="btn-outline" onclick="showEventDetails(104)">Подробнее</button>
+        </div>
+    </div>
+</div>
+    </div> <!-- ЗАКРЫВАЕМ grid с Талышскими горами -->
+
+
+
+<div class="section-header" style="margin-top: 60px;">
+    <h2>Исторические и архитектурные наследия</h2>
+    <div class="line"></div>
+</div>
+
+<div class="grid" id="heritage-grid">
+            
+            <div class="card" data-category="heritage" data-id="10">
+                <div class="card-img-wrap" onclick="showEventDetails(10)"><img src="https://portal.azertag.az/sites/default/files/shirvanImage.jpg" alt="Дворец Ширваншахов"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">15 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 10)"><span id="heart-10">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(10)">Дворец Ширваншахов (UNESCO)</div>
+                    <div class="card-meta">📍 Ичери Шехер, Баку</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(10)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(10)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="heritage" data-id="11">
+                <div class="card-img-wrap" onclick="showEventDetails(11)"><img src="https://fs.tonkosti.ru/6o/h3/6oh32sgv2d8gowwsk4w00ow88.jpg" alt="Девичья башня"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">12 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 11)"><span id="heart-11">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(11)">Девичья башня (Qız Qalası)</div>
+                    <div class="card-meta">📍 Ичери Шехер, Баку</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(11)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(11)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="heritage" data-id="12">
+                <div class="card-img-wrap" onclick="showEventDetails(12)"><img src="https://www.quinta.ru/upload/iblock/812/ppkqq21lpaufk4jqftsd77q0r32lx9zf/%D0%A5%D0%A0%D0%90%D0%9C%D0%9E%D0%92%D0%AB%D0%99%20%D0%9A%D0%9E%D0%9C%D0%9F%D0%9B%D0%95%D0%9A%D0%A1%20%D0%9E%D0%93%D0%9D%D0%95%D0%9F%D0%9E%D0%9A%D0%9B%D0%9E%D0%9D%D0%9D%D0%98%D0%9A%D0%9E%D0%92%20%D0%90%D0%A2%D0%95%D0%A8%D0%93%D0%AF%D0%A5.jpg" alt="Храм Атешгях"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">10 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 12)"><span id="heart-12">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(12)">Храм огнепоклонников Атешгях</div>
+                    <div class="card-meta">📍 пос. Сураханы, Апшерон</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(12)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(12)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card" data-category="heritage" data-id="13">
+                <div class="card-img-wrap" onclick="showEventDetails(13)"><img src="https://www.advantour.com/img/azarbaijan/baku/yanar-dag.jpg" alt="Янардаг"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">9 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 13)"><span id="heart-13">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(13)">Горящая гора Янардаг</div>
+                    <div class="card-meta">📍 пос. Мамедли, Апшерон</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(13)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(13)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="heritage" data-id="14">
+                <div class="card-img-wrap" onclick="showEventDetails(14)"><img src="https://navicup.com//upload/map-files/images/4069/image_47.png" alt="Национальный парк Гобустан"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">18 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 14)"><span id="heart-14">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(14)">Национальный парк Гобустан (UNESCO)</div>
+                    <div class="card-meta">📍 пос. Гобустан, 60 км от Баку</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(14)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(14)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 60px;"><h2>Современная архитектура</h2><div class="line"></div></div>
+        <div class="grid" id="modern-architecture-grid">
+             <div class="card" data-category="modern" data-id="9">
+                <div class="card-img-wrap" onclick="showEventDetails(9)"><img src="https://azterra.az/wp-content/uploads/heydar-aliyev-center-baku.jpg" alt="Центр Гейдара Алиева"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">15 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 9)"><span id="heart-9">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(9)">Центр Гейдара Алиева</div>
+                    <div class="card-meta">📍 пр. Гейдара Алиева, 1</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(9)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(9)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="modern" data-id="15">
+                <div class="card-img-wrap" onclick="showEventDetails(15)"><img src="https://info-cam.ru/gallery/data/media/15/DSC_6909_00001T11AFL1G.jpg" alt="Башни Пламени"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">20 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 15)"><span id="heart-15">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(15)">Башни Пламени (Flame Towers)</div>
+                    <div class="card-meta">📍 ул. Мехти Гусейна, 1А</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(15)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(15)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-header" style="margin-top: 60px;"><h2>Музеи и Выставки</h2><div class="line"></div></div>
+        <div class="grid" id="museums-grid">
+            
+            <div class="card" data-category="museum" data-id="4">
+                <div class="card-img-wrap" onclick="showEventDetails(4)"><img src="https://lh3.googleusercontent.com/proxy/n5tThqHxA6kP0f4SlemF7DUToTEZywAWrGjjrRULUwPMgqeaudj7h3ki6tCiDiynqqS5Ol_PDrShjrIcg8kcwEAhBLNgfCX2HqkKh6ypKKuBwB6bFumlF21Mv_yqj8Vy6_AqPVNu9Sydww" alt="Музей Истории"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">10 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 4)"><span id="heart-4">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(4)">Национальный Музей Истории</div>
+                    <div class="card-meta">📍 ул. Гусейна Джавада, 4</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(4)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(4)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="museum" data-id="5">
+                <div class="card-img-wrap" onclick="showEventDetails(5)"><img src="https://azerbaijan.travel/resize3000/center/pages/318/aec4d8a6-415d-4b73-8e46-4bed4f710f2a.jpg" alt="Музей Ковра"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">7 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 5)"><span id="heart-5">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(5)">Музей Азербайджанского Ковра</div>
+                    <div class="card-meta">📍 Приморский бульвар</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(5)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(5)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="museum" data-id="6">
+                <div class="card-img-wrap" onclick="showEventDetails(6)"><img src="https://ru.trend.az/media/2020/09/11/trend_museum_modern_art_110920_1.jpg" alt="MOMA"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">5 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 6)"><span id="heart-6">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(6)">Музей Современного Искусства</div>
+                    <div class="card-meta">📍 ул. Юсифа Сафарова, 5</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(6)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(6)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="museum" data-id="7">
+                <div class="card-img-wrap" onclick="showEventDetails(7)"><img src="https://fs.tonkosti.ru/5f/st/5fsto22oouwwos0ssokg00k8c.jpg" alt="Музей Низами"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">10 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 7)"><span id="heart-7">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(7)">Музей Литературы им. Низами</div>
+                    <div class="card-meta">📍 пр. Независимости, 53</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(7)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(7)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" data-category="museum" data-id="8">
+                <div class="card-img-wrap" onclick="showEventDetails(8)"><img src="https://aristokrat.az/public/museum/1709290199uzeyir.jpg" alt="Музей Узеира"></div>
+                <div class="card-body">
+                    <div class="card-actions">
+                        <span class="price">2 ₼</span>
+                        <span class="favorite-toggle" onclick="toggleFavorite(event, 8)"><span id="heart-8">♡</span></span>
+                    </div>
+                    <div class="card-title" onclick="showEventDetails(8)">Дом-музей Узеира Гаджибейли</div>
+                    <div class="card-meta">📍 ул. Р. Рзаева, 67</div>
+                    <div class="card-footer">
+                        <button class="btn-outline" onclick="showEventDetails(8)">Подробнее</button>
+                        <button class="btn-main" onclick="addToCart(8)">Добавить в корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="eventModal" class="modal" onclick="closeModals(event)">
+    <div class="event-modal-content">
+        <span class="modal-close" onclick="document.getElementById('eventModal').style.display='none'">&times;</span>
+        <div class="event-modal-img" id="modalImg"></div>
+        <div class="event-modal-info">
+            <h2 id="modalTitle" style="margin-top: 0; color: var(--primary);">Заголовок</h2>
+
+            <!-- Здесь как и раньше: текст + (в твоём JS может уже подгружаться карта) -->
+            <p id="modalDesc"
+               style="line-height: 1.8; color: #555; white-space: pre-wrap;">
+                Описание...
+            </p>
+
+            <!-- ИНСТРУМЕНТЫ ПОД КАРТОЙ / ОПИСАНИЕМ -->
+            <div id="eventTools" class="event-tools">
+                <div class="event-tools-header">Инструменты маршрута</div>
+
+                <div class="event-tools-buttons" id="eventToolsButtons">
+                    <button type="button" data-tool="pack" onclick="showEventTool('pack')">
+                        Собери рюкзак
+                    </button>
+                    <button type="button" data-tool="signal" onclick="showEventTool('signal')">
+                        Покрытие связи
+                    </button>
+                    <button type="button" data-tool="weather" onclick="showEventTool('weather')">
+                        Погода по маршруту
+                    </button>
+                </div>
+
+                <div class="event-tools-content" id="eventToolsContent">
+                    <p style="font-size: 14px; color: #666;">
+                        Выберите инструмент, чтобы увидеть рекомендации по этому месту.
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <button class="btn-main" id="modalBuyButton"
+                        style="width: 100%; padding: 15px;">
+                    Добавить в корзину
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="authModal" class="modal" onclick="closeModals(event)">
+         <div class="auth-modal-content">
+            <span class="modal-close" onclick="document.getElementById('authModal').style.display='none'">&times;</span>
+            <div class="tab-buttons">
+                <button class="tab-button active" onclick="showAuthTab('login')">Вход</button>
+                <button class="tab-button" onclick="showAuthTab('register')">Регистрация</button>
+            </div>
+            
+            <div id="loginForm" class="form-container active">
+                <form onsubmit="handleAuthSubmit(event, 'login')"> 
+                    <input type="email" placeholder="Email" class="form-input" required>
+                    <input type="password" placeholder="Пароль" class="form-input" required>
+                    <button class="btn-main" style="width: 100%; padding: 12px 25px; margin-top: 5px;">Войти</button>
+                </form>
+            </div>
+
+            <div id="registerForm" class="form-container">
+                 <form onsubmit="handleAuthSubmit(event, 'register')"> 
+                    <input type="text" id="registerName" placeholder="Ваше Имя (обязательно)" class="form-input" required>
+                    <input type="email" placeholder="Email" class="form-input" required>
+                    <input type="password" placeholder="Пароль" class="form-input" required>
+                    <button class="btn-main" style="width: 100%; padding: 12px 25px;">Зарегистрироваться</button>
+                </form>
+            </div>
+            
+           <div style="margin: 20px 0; color: #999; font-size: 14px;">или</div>
+            
+<button class="google-btn" type="button" onclick="googleLogin()">
+    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+        <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+        <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.84z" fill="#FBBC05"/>
+        <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+    </svg>
+    Войти через Google
+</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+
+
+
+<div class="support-widget">
+    <button class="support-button" onclick="openSupportModal()">
+        <!-- Иконка чата -->
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 20C7.58 20 4 16.42 4 12C4 7.58 7.58 4 12 4C16.42 4 20 7.58 20 12C20 16.42 16.42 20 12 20Z" fill="white"/>
+            <path d="M12 6C9.79 6 8 7.79 8 10V11C8 13.21 9.79 15 12 15C14.21 15 16 13.21 16 11V10C16 7.79 14.21 6 12 6ZM12 13C10.9 13 10 12.1 10 11V10C10 8.9 10.9 8 12 8C13.1 8 14 8.9 14 10V11C14 12.1 13.1 13 12 13Z" fill="white"/>
+            <path d="M15 14C14.45 14 14 14.45 14 15V17C14 17.55 14.45 18 15 18C15.55 18 16 17.55 16 17V15C16 14.45 15.55 14 15 14Z" fill="white"/>
+            <path d="M9 14C8.45 14 8 14.45 8 15V17C8 17.55 8.45 18 9 18C9.55 18 10 17.55 10 17V15C10 14.45 9.55 14 9 14Z" fill="white"/>
+        </svg>
+    </button>
+</div>
+
+<!-- ИИ‑бот (кнопка над службой поддержки) -->
+<div class="ai-widget">
+    <button class="ai-button" onclick="openAiModal()" title="Виртуальный помощник">
+        🤖
+    </button>
+</div>
+
+<div id="aiModal" class="support-modal" onclick="closeAiModalOutside(event)">
+    <div class="support-modal-content ai-modal-content" onclick="event.stopPropagation();">
+        <span class="modal-close" onclick="closeAiModal()">&times;</span>
+        <div class="support-modal-header">Виртуальный помощник</div>
+
+        <div id="aiChat" class="ai-chat-window">
+            <div class="ai-message ai-message-bot">
+                Привет! Я виртуальный помощник AZ Travel.
+                Задайте вопрос о музеях, горах или достопримечательностях.
+            </div>
+        </div>
+
+        <form class="ai-input-row" onsubmit="handleAiMessage(event)">
+            <input type="text" id="aiInput"
+                   placeholder="Напишите вопрос..."
+                   autocomplete="off">
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
+
+<div id="supportModal" class="support-modal" onclick="closeSupportModalOutside(event)">
+    <div class="support-modal-content" onclick="event.stopPropagation();">
+        <span class="modal-close" onclick="closeSupportModal()">&times;</span>
+        <div class="support-modal-header">Служба поддержки</div>
+        <div class="support-info">
+            <strong>Телефон:</strong>
+            +994 12 345 67 89<br>
+            +994 55 123 45 67<br>
+            +994 77 987 65 43
+        </div>
+        <div class="support-info">
+            <strong>Адрес:</strong>
+            г. Баку, ул. Низами, 98/1,<br>
+            офис 105
+        </div>
+        <div class="support-info">
+            <strong>Онлайн поддержка:</strong>
+            <a href="mailto:support@baku-culture.az">support@baku-culture.az</a>
+        </div>
+    </div>
+</div>
+<!-- О НАС -->
+<div id="aboutModal" class="support-modal" onclick="closeAboutModalOutside(event)">
+    <div class="support-modal-content" onclick="event.stopPropagation();">
+        <span class="modal-close" onclick="closeAboutModal()">&times;</span>
+        <div class="support-modal-header">О нас</div>
+        <div style="line-height: 1.7; font-size: 14px; color: #444;">
+            <p><strong>AZ Travel</strong> — учебный онлайн‑проект, посвящённый горам и культурному наследию Азербайджана.</p>
+
+            <p>Мы собрали в одном месте горные регионы (Талышские горы, Большой и Малый Кавказ), озёра, водопады, курорты, музеи и архитектурные объекты. Цель проекта — показать, насколько разнообразен Азербайджан, и помочь пользователю легко находить интересные места для путешествий.</p>
+
+            <p><strong>Что можно сделать на сайте AZ Travel:</strong></p>
+            <ul style="padding-left: 18px; margin: 8px 0 12px;">
+                <li>изучать горные регионы Азербайджана и смотреть краткое описание каждого места;</li>
+                <li>открывать карту с расположением объекта и планировать маршрут;</li>
+                <li>добавлять понравившиеся места в избранное;</li>
+                <li>«покупать» билеты в музеи и культурные объекты (режим демонстрации без реальной оплаты);</li>
+                <li>копить достижения за посещённые места и получать учебные «скидки»;</li>
+                <li>общаться с виртуальным помощником, который подсказывает, куда можно поехать и что посмотреть.</li>
+            </ul>
+
+            <p><strong>Для кого сделан проект:</strong></p>
+            <ul style="padding-left: 18px; margin: 8px 0 12px;">
+                <li>для студентов и школьников, которые изучают веб‑разработку и хотят увидеть пример «живого» проекта;</li>
+                <li>для тех, кто интересуется природой и культурой Азербайджана и хочет получить базовое представление о местах;</li>
+                <li>для преподавателей, которым нужен наглядный пример работы с интерфейсом, избранным, корзиной и простейшей «базой данных».</li>
+            </ul>
+
+            <p>AZ Travel не является коммерческим сервисом. Все данные о билетах и покупках носят демонстрационный характер и используются только для учебных целей. При этом мы старались сделать интерфейс максимально похожим на реальный туристический сервис — с личным кабинетом, достижениями, фильтрами и диалоговым помощником.</p>
+
+            <p><strong>Миссия проекта</strong> — вдохновить пользователя на путешествия по Азербайджану и одновременно показать, как можно реализовать современный, живой интерфейс на HTML, CSS и JavaScript.</p>
+        </div>
+    </div>
+</div>
+
+<!-- ВОПРОСЫ И ОТВЕТЫ -->
+<div id="faqModal" class="support-modal" onclick="closeFaqModalOutside(event)">
+    <div class="support-modal-content" onclick="event.stopPropagation();">
+        <span class="modal-close" onclick="closeFaqModal()">&times;</span>
+        <div class="support-modal-header">Вопросы и ответы</div>
+
+        <!-- НОВЫЕ ВОПРОСЫ ПРО ГОРЫ И ПУТЕШЕСТВИЯ -->
+        <div class="faq-item">
+            <div class="faq-question">1. Можно ли с помощью AZ Travel спланировать поездку в горы?</div>
+            <div class="faq-answer">
+                Да. В разделе с горными регионами вы можете выбрать Талышские горы, Большой и Малый Кавказ, посмотреть основные места (водопады, озёра, курорты), открыть их расположение на карте и добавить в избранное. Это не полноценный тур‑оператор, но удобный справочник для самостоятельного планирования маршрута.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">2. Чем отличаются Талышские горы, Большой Кавказ и Малый Кавказ?</div>
+            <div class="faq-answer">
+                Вкратце:
+                <br>• <strong>Талышские горы</strong> — влажные и зелёные, мягкий климат, облачные луга, водопады и лесные тропы (Лерик, Ханбулан, Сим и др.). 
+                <br>• <strong>Большой Кавказ</strong> — высокие хребты, скалистые вершины, горнолыжные курорты (Шахдаг, Туфандаг) и водопады (Лаза, «Семь красавиц»). 
+                <br>• <strong>Малый Кавказ</strong> — оздоровительные курорты (Нафталан, Истису), озёра (Гёльгёль) и живописные долины.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">3. Как выбрать маршрут в горы по уровню сложности?</div>
+            <div class="faq-answer">
+                На сайте мы не указываем спортивную классификацию маршрутов, но даём общее описание мест. 
+                Для лёгких прогулок подойдут озёра (Нохур Гёль, Гёльгёль) и окрестности горных курортов (Шахдаг, Туфандаг). Более сложные маршруты и длительные треккинги лучше планировать дополнительно, ориентируясь на погоду, рельеф и свою физическую подготовку.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">4. Какие меры безопасности нужно соблюдать в горах?</div>
+            <div class="faq-answer">
+                Основные рекомендации:
+                <br>• уточняйте прогноз погоды и не выходите в путь при грозе, тумане или сильном ветре;
+                <br>• сообщайте близким, куда вы идёте и когда планируете вернуться;
+                <br>• берите удобную обувь с хорошим сцеплением, тёплую одежду и запас воды;
+                <br>• не подходите близко к краям отвесных скал и мокрых камней у водопадов;
+                <br>• следуйте официальным тропам и указателям, не ходите в одиночку по незнакомым маршрутам.
+                <br><br>AZ Travel даёт справочную информацию, но личная безопасность всегда остаётся ответственностью путешественника.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">5. Какое время года лучше всего подходит для посещения гор Азербайджана?</div>
+            <div class="faq-answer">
+                Для большинства маршрутов и озёр комфортнее всего поздняя весна, лето и начало осени. 
+                <br>• В это время выше вероятность хорошей погоды и открытых дорог. 
+                <br>• Зимой горные курорты (Шахдаг, Туфандаг) работают как лыжные, но часть водопадов и троп может быть недоступна или требовать специальной подготовки.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">6. Можно ли смотреть точное расположение мест на карте?</div>
+            <div class="faq-answer">
+                Да. В карточках мест и во всплывающих окнах «Подробнее» есть мини‑карта. Нажав на неё, вы можете открыть локацию в Google Maps и построить маршрут от вашего текущего местоположения. Обратите внимание, что некоторые горные участки дорог могут быть грунтовыми или сезонно закрытыми.
+            </div>
+        </div>
+
+        <!-- СТАРЫЕ ВОПРОСЫ (ПЕРЕНУМЕРОВАНЫ, ИДУТ ПОСЛЕ НОВЫХ) -->
+        <div class="faq-item">
+            <div class="faq-question">7. Как купить билет на сайте?</div>
+            <div class="faq-answer">Выберите интересующий объект, нажмите «Купить билет», заполните данные и подтвердите оплату. После успешной оплаты вы получите электронный билет.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">8. Нужно ли регистрироваться для покупки?</div>
+            <div class="faq-answer">Регистрация не обязательна, но с аккаунтом вам проще хранить историю покупок и данные для последующих заказов.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">9. Где я увижу свой билет после оплаты?</div>
+            <div class="faq-answer">Билет отображается на экране сразу после оплаты и отправляется на указанный вами e‑mail.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">10. Какие способы оплаты поддерживаются?</div>
+            <div class="faq-answer">В реальном проекте подключаются банковские карты и онлайн‑кошельки. В текущей версии сайта оплата является демонстрационной.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">11. Можно ли вернуть или обменять билет?</div>
+            <div class="faq-answer">Условия возврата зависят от конкретного музея или площадки. Обычно возврат возможен не позднее чем за 24 часа до посещения. Подробности уточняйте в службе поддержки.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">12. Что делать, если письмо с билетом не пришло?</div>
+            <div class="faq-answer">Сначала проверьте папку «Спам». Если письма нет — напишите в поддержку и укажите дату покупки и e‑mail, который вы вводили.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">13. Можно ли купить билеты для группы?</div>
+            <div class="faq-answer">Да, вы можете оформить несколько билетов подряд. Для больших групп лучше заранее связаться с нами для индивидуальных условий.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">14. Подходит ли сайт для иностранных туристов?</div>
+            <div class="faq-answer">Да, сайт доступен из любой страны. Сейчас основная информация — на русском, постепенно добавляются и другие языки.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">15. Насколько безопасна оплата?</div>
+            <div class="faq-answer">При реальной интеграции используются защищённые соединения и сертифицированные платёжные провайдеры. В учебной версии данные карт никуда не отправляются.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">16. Как связаться с вами по другим вопросам?</div>
+            <div class="faq-answer">Используйте виджет «Служба поддержки» в правом нижнем углу или напишите на e‑mail: support@baku-culture.az.</div>
+        </div>
+    </div>
+</div>
+
+<!-- СОЦИАЛЬНЫЕ СЕТИ -->
+<div id="socialModal" class="support-modal" onclick="closeSocialModalOutside(event)">
+    <div class="support-modal-content" onclick="event.stopPropagation();">
+        <span class="modal-close" onclick="closeSocialModal()">&times;</span>
+        <div class="support-modal-header">Мы в социальных сетях</div>
+
+        <div class="social-list">
+            <div class="social-item">
+                <a href="https://wa.me/994551234567" target="_blank">
+                    <div class="social-icon" style="background-color:#25D366;">
+                        <!-- WhatsApp icon -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.02 2 11.1C2 13.59 3.02 15.86 4.7 17.55L3 22L7.6 20.32C9.17 21.06 10.96 21.5 12.86 21.5C18.38 21.5 22.86 17.48 22.86 12.4C22.86 7.32 18.38 3.3 12.86 3.3H12Z"/>
+                        </svg>
+                    </div>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+
+            <div class="social-item">
+                <a href="https://instagram.com/bakuculture" target="_blank">
+                    <div class="social-icon" style="background: radial-gradient(circle at 30% 30%, #fdf497, #f56040, #d62976, #962fbf, #4f5bd5);">
+                        <!-- Instagram icon -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7 2C4.24 2 2 4.24 2 7V17C2 19.76 4.24 22 7 22H17C19.76 22 22 19.76 22 17V7C22 4.24 19.76 2 17 2H7ZM12 8C14.21 8 16 9.79 16 12C16 14.21 14.21 16 12 16C9.79 16 8 14.21 8 12C8 9.79 9.79 8 12 8ZM18 7.5C18 8.05 17.55 8.5 17 8.5C16.45 8.5 16 8.05 16 7.5C16 6.95 16.45 6.5 17 6.5C17.55 6.5 18 6.95 18 7.5Z"/>
+                        </svg>
+                    </div>
+                    <span>Instagram</span>
+                </a>
+            </div>
+
+            <div class="social-item">
+                <a href="https://facebook.com" target="_blank">
+                    <div class="social-icon" style="background-color:#1877F2;">
+                        <!-- Facebook icon -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 3H17V7H15C14.45 7 14 7.45 14 8V10H17V14H14V21H10V14H7V10H10V7C10 4.79 11.79 3 13 3Z"/>
+                        </svg>
+                    </div>
+                    <span>Facebook</span>
+                </a>
+            </div>
+
+            <div class="social-item">
+                <a href="https://youtube.com" target="_blank">
+                    <div class="social-icon" style="background-color:#FF0000;">
+                        <!-- YouTube icon -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 15L15 12L10 9V15Z"/><path d="M21.8 8.001C21.65 7.331 21.12 6.801 20.45 6.651C19.24 6.381 16 6.381 16 6.381C16 6.381 12.76 6.381 11.55 6.651C10.88 6.801 10.35 7.331 10.2 8.001C9.93 9.211 9.93 12.001 9.93 12.001C9.93 12.001 9.93 14.791 10.2 16.001C10.35 16.671 10.88 17.201 11.55 17.351C12.76 17.621 16 17.621 16 17.621C16 17.621 19.24 17.621 20.45 17.351C21.12 17.201 21.65 16.671 21.8 16.001C22.07 14.791 22.07 12.001 22.07 12.001C22.07 12.001 22.07 9.211 21.8 8.001Z"/>
+                        </svg>
+                    </div>
+                    <span>YouTube</span>
+                </a>
+            </div>
+
+            <div class="social-item">
+                <a href="https://tiktok.com" target="_blank">
+                    <div class="social-icon" style="background-color:#000000;">
+                        <!-- TikTok icon -->
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16 8.5C17.54 9.66 19.15 10.08 20 10.2V7.79C19.33 7.61 18.4 7.24 17.68 6.7C16.86 6.09 16.39 5.39 16.15 4.93H13.9V15.26C13.9 16.13 13.17 16.86 12.3 16.86C11.43 16.86 10.7 16.13 10.7 15.26C10.7 14.39 11.43 13.66 12.3 13.66C12.59 13.66 12.86 13.73 13.1 13.85V11.47C12.84 11.43 12.57 11.41 12.3 11.41C10.16 11.41 8.4 13.17 8.4 15.31C8.4 17.45 10.16 19.21 12.3 19.21C14.44 19.21 16.2 17.45 16.2 15.31V8.5H16Z"/>
+                        </svg>
+                    </div>
+                    <span>TikTok</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="cartModal" class="support-modal" onclick="closeCartModalOutside(event)">
+    <div class="support-modal-content" onclick="event.stopPropagation();">
+        <span class="modal-close" onclick="closeCartModal()">&times;</span>
+        <div class="support-modal-header">Корзина</div>
+
+        <div id="cartItemsContainer"></div>
+        <div id="cartTotal" class="cart-total"></div>
+
+        <button class="btn-main" style="width: 100%; margin-top: 15px;"
+                onclick="openCartPayment()">
+            Перейти к оплате
+        </button>
+    </div>
+</div>
+<div id="profileModal" class="support-modal" onclick="closeProfileModalOutside(event)">
+    <div class="support-modal-content profile-modal" onclick="event.stopPropagation();">
+        <span class="modal-close" onclick="closeProfileModal()">&times;</span>
+        <div class="support-modal-header">Личный кабинет</div>
+
+        <!-- ТАБЫ ЛИЧНОГО КАБИНЕТА -->
+        <div class="profile-tabs">
+            <button class="profile-tab" data-tab="data" onclick="switchProfileTab('data')">Личные данные</button>
+            <button class="profile-tab" data-tab="discounts" onclick="switchProfileTab('discounts')">Скидки достижений</button>
+            <button class="profile-tab active" data-tab="achievements" onclick="switchProfileTab('achievements')">Мои достижения</button>
+        </div>
+
+        <!-- СЕКЦИЯ: ЛИЧНЫЕ ДАННЫЕ -->
+        <div id="profileDataSection" class="profile-section">
+            <div id="profileDataContainer"></div>
+        </div>
+
+        <!-- СЕКЦИЯ: СКИДКИ ДОСТИЖЕНИЙ -->
+        <div id="profileDiscountsSection" class="profile-section">
+            <div id="discountsContainer"></div>
+        </div>
+
+        <!-- СЕКЦИЯ: МОИ ДОСТИЖЕНИЯ -->
+        <div id="profileAchievementsSection" class="profile-section active">
+            <p style="margin-top: 0; font-size: 14px; color: #555;">
+                Ваши достижения за путешествия по горным регионам Азербайджана.
+            </p>
+            <div id="achievementsContainer" class="achievements-grid"></div>
+        </div>
+    </div>
+</div>
+
+<div id="regionModal" class="support-modal" onclick="closeRegionModalOutside(event)">
+    <div class="support-modal-content region-modal" onclick="event.stopPropagation();">
+        <span class="modal-close" onclick="closeRegionModal()">&times;</span>
+        <div class="support-modal-header" id="regionModalTitle">Регион</div>
+        <p id="regionModalBody"
+           style="margin-top: 10px; line-height: 1.7; font-size: 14px; color: #444; white-space: pre-wrap;">
+        </p>
+    </div>
+</div>
+
+<div id="paymentModal" class="payment-modal" onclick="handlePaymentModalBackgroundClick(event)">
+    <div class="payment-modal-content" onclick="event.stopPropagation();">
+        <span class="payment-modal-close" onclick="closePaymentModal()">&times;</span>
+        <div class="payment-modal-header">Оплата билета</div>
+
+        <div class="payment-amount-display" id="paymentAmount">
+            Сумма к оплате: —
+        </div>
+
+        <form id="paymentForm" onsubmit="submitPayment(event)">
+            <div class="payment-form-group">
+                <label for="paymentEventTitle">Событие</label>
+                <input type="text" id="paymentEventTitle" readonly>
+            </div>
+
+            <div class="payment-form-group">
+                <label for="cardNumber">Номер карты</label>
+                <input type="text" id="cardNumber"
+                       maxlength="19"
+                       placeholder="0000 0000 0000 0000"
+                       required>
+            </div>
+
+            <div class="payment-form-group">
+                <label for="cardName">Имя держателя карты</label>
+                <input type="text" id="cardName"
+                       placeholder="Как на карте"
+                       required>
+            </div>
+
+            <div class="payment-form-group" style="display: flex; gap: 10px;">
+                <div style="flex: 1;">
+                    <label for="cardExpiry">Срок действия</label>
+                    <input type="text" id="cardExpiry"
+                           maxlength="5"
+                           placeholder="MM/YY"
+                           required>
+                </div>
+                <div style="flex: 1;">
+                    <label for="cardCvc">CVC</label>
+                    <input type="password" id="cardCvc"
+                           maxlength="4"
+                           placeholder="CVC"
+                           required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-payment">Оплатить</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
